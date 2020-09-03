@@ -12,7 +12,7 @@ const WHITELIST = [
 
 module.exports = {
   options: {
-      origin: function (origin, callback) {        
+      origin: function (origin, callback) {
         if (WHITELIST.indexOf(origin) !== -1) {
           callback(null, true)
         } else {
