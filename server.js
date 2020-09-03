@@ -1,31 +1,30 @@
-require('dotenv').config({ path: __dirname + '/.env' })
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({ path: __dirname + '/.env' })
+}
 
+const bodyParser  = require('body-parser'),
+      express     = require('express'),
+      http        = require('http'),
+      https       = require('https'),
+      crossOrigin = require("cors"),
+      configAPI   = require('./app/config/api.config'),
+      configCORS  = require('./app/config/cors.config'),
+      configSSL   = require('./app/config/ssl.config'),
 
-const { isNullOrUndefined } = require('util');
-
-const bodyParser  = require('body-parser');
-const express     = require('express');
-const http        = require('http');
-const https       = require('https');
-const cors        = require("cors");
-const ConfigAPI   = require('./app/config/api.config');
-const ConfigCORS  = require('./app/config/cors.config');
-const ConfigSSL   = require('./app/config/ssl.config');
-
-const app         = express();
-const server      = (!isNullOrUndefined(process.env.SSL) && process.env.SSL == 'true' ? https.createServer(ConfigSSL.options, app) : http.createServer(ConfigSSL.options, app));
-const middleware  = require('./app/config/middleware.config')(app);
-const io          = require('socket.io')(server);
-const PORT        = parseInt(process.env.PORT, 10) || 8000;
+      app         = express(),
+      server      = (configSSL.valid ? https.createServer(configSSL.options, app) : http.createServer(app)),
+      middleware  = require('./app/config/middleware.config')(app),
+      io          = require('socket.io')(server),
+      PORT        = parseInt(process.env.PORT, 10) || 8000;
 
 server.listen(PORT, () => { console.log('Server is listening to port %d', PORT) });
 
-app.set('private-key', ConfigAPI.PrivateKey)
+app.set('private-key', configAPI.PrivateKey)
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(cors(ConfigCORS.options));
+app.use(crossOrigin(configCORS.options));
 
-const deliveries = {};
+// const deliveries = {};
 
 // io.on('connection', (socket) => {
 //   var addedUser = false;
