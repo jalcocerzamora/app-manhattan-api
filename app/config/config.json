@@ -28,12 +28,12 @@
     "port": 3306,
     "dialect": "mysql",
     "pool": {
-        "max": 5,
-        "min": 0,
-        "acquire": 30000,
-        "idle": 10000
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
     }
-}
+  },
   "production_postgres": {
     "username": "irtiomtuxyjdnm",
     "password": "e0a15693631deb25a628340047097568ceab342c4b06c2dc2fbdb8f6e4158ee2",
