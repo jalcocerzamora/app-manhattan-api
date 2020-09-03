@@ -4,10 +4,14 @@
   "description": "Nodejs to create rest call using MySQL",
   "main": "server.js",
   "scripts": {
-    "start": "server.js",
+    "start": "node server.js",
     "seed-all": "npx sequelize-cli db:seed:all",
     "seed-undo": "npx sequelize-cli db:seed:undo",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines" : { 
+    "node" : "12.x",
+    "npm": "6.x"
   },
   "author": {
     "name": "Jonatan Alcocer Zamora",
