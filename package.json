@@ -1,0 +1,34 @@
+{
+  "name": "app-manhattan",
+  "version": "1.0.0",
+  "description": "Nodejs to create rest call using MySQL",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "seed-all": "npx sequelize-cli db:seed:all",
+    "seed-undo": "npx sequelize-cli db:seed:undo",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Jonatan Alcocer Zamora",
+    "email": "jalcocerzamora@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.0.2",
+    "sequelize": "^6.3.4",
+    "socket.io": "^2.3.0",
+    "validator": "^13.1.1"
+  },
+  "devDependencies": {
+    "@types/sequelize": "^4.28.9",
+    "nodemon": "^2.0.4",
+    "sequelize-cli": "^6.2.0"
+  }
+}
