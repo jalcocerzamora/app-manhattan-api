@@ -5,6 +5,7 @@ const WHITELIST = [
 
   // DEPLOY
   'https://jalcocerzamora.github.io',
+  'https://jalcocerz.000webhostapp.com/',
   // DEPLOY LOCAL
   'http://local.app-manhattan.com',
 
