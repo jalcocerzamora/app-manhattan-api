@@ -20,7 +20,7 @@ module.exports = {
       },
       {
         avatar: null, 
-        firstname: 'RESTAURANTE MANHATTAN', lastname: null, username: 'manhattan', password: 'manhattan-prod', email: 'jalcocerzamora@gmail.com',
+        firstname: 'RESTAURANTE MANHATTAN', lastname: '', username: 'manhattan', password: 'manhattan-prod', email: 'jalcocerzamora@gmail.com',
         role: 'public', createdAt: new Date(), updatedAt: new Date()
       },
     ], {});

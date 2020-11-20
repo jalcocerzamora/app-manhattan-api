@@ -13,6 +13,20 @@
       "idle": 10000
     }
   },
+  "development_localhost": {
+    "username": "root",
+    "password": "",
+    "database": "easyorder_manhattan_dev",
+    "host": "localhost",
+    "port": 3306,
+    "dialect": "mysql",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  },
   "test": {
     "username": "root",
     "password": null,

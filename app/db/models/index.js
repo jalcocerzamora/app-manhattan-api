@@ -5,8 +5,9 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const { isNullOrUndefined, isBoolean } = require('util');
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../../config/config.json')[env];
+const NODE_ENV = process.env.NODE_ENV || 'development';
+const SERVER = process.env.SERVER || '';
+const config = require(__dirname + '/../../config/config.json')[NODE_ENV.concat(SERVER)];
 const db = {};
 
 let sequelize;
@@ -41,6 +42,8 @@ if(!isNullOrUndefined(process.env.ALTER_DB) && process.env.ALTER_DB == 'true') {
 } else if(!isNullOrUndefined(process.env.FORCE_DB) && process.env.FORCE_DB == 'true') {
   db.sequelize.sync({ force: true });
   console.log("sync.force!");
+} else {
+  console.log("no sync.alter! and sync.force!");
 }
 
 isNullOrUndefined

@@ -6,7 +6,8 @@ const middleware = express.Router();
 module.exports = (app) => {
     middleware: {
         return middleware.use((req, res, next) => {
-            const token = req.headers["authorization"].split(' ')[1];
+            const authorization = req.headers.authorization;
+            const token = authorization ? req.headers.authorization.split(' ')[1] : false;
             if (token) {
                 jwt.verify(token, app.get('private-key'), (err, decoded) => {
                     if (err) {

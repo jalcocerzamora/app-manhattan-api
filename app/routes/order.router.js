@@ -17,5 +17,5 @@ module.exports = (app, middleware) => {
   
     // router.delete("/", order.deleteAll);
   
-    app.use('/app-manhattan/api/order', router);
+    app.use('/api/order', router);
   };

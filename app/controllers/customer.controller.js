@@ -3,7 +3,7 @@ const Customer  = db.customers;
 const Op        = db.Sequelize.Op;
 
 // Create and Save a new Customer
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   // Validate request
   if (!req.body.name) {
     res.status(400).send({
