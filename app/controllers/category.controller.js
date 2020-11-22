@@ -9,7 +9,6 @@ const Category = require('../db/models').db.Category;
 module.exports = {
 
   async create(req, res) {
-
     try {
       const category = await Category.create(
         {
@@ -22,7 +21,6 @@ module.exports = {
       console.log(e);
       res.status(400).send(e);
     }
-
   },
 
   async findAll(req, res) {

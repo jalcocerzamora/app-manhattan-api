@@ -1,16 +1,15 @@
-var router = require("express").Router();
+// Expose the Stripe publishable key and other pieces of config via an endpoint.
+const config = require('../config/stripe.config');
+
+const router = require("express").Router();
+const controller = require('../controllers').Payment;
 
 const db = require('../db/models').db;
 const Subproduct = db.Subproduct;
 
 module.exports = (app, middleware) => {
-
-  const controller = require('../controllers/payment.controller');
-
   router.post("/create-intent", middleware, controller.createIntent);
-  
-  // Expose the Stripe publishable key and other pieces of config via an endpoint.
-  const config = require('../config/stripe.config');
+
   router.get('/config', (req, res) => {
     res.json({
       stripePublishableKey: config.stripe.publishableKey,

@@ -5,7 +5,6 @@ const Login = require('../db/models').db.User;
 const Op = require('../db/models').db.Sequelize.Op;
 
 module.exports = {
-
   async validate(req, res) {
     let condition = { username: req.body.username, password: req.body.password };
     try {
@@ -15,27 +14,27 @@ module.exports = {
       } else {
         const user = { id: User.id, username: User.username, email: User.email };
         const options = (User.role == 'public' ? {} : { expiresIn: '1h' })
-        const token = jwt.sign({user}, ConfigAPI.PrivateKey, options);
+        const token = jwt.sign({ user }, ConfigAPI.PrivateKey, options);
 
-        res.status(201).json(( User.role === 'public' ? 
-        {
-          Username: User.username,
-          Token: token,
-        }
-        :
-        {
-          Username: User.username,
-          Firstname: User.firstname,
-          Lastname: User.lastname,
-          Email: User.email,
-          Role: User.role,
-          Token: token
-        }));
+        res.cookie("SESSIONID", token, { httpOnly:true, secure:true });
+        res.status(201).json((User.role === 'public' ?
+          {
+            Username: User.username,
+            Token: token,
+          }
+          :
+          {
+            Username: User.username,
+            Firstname: User.firstname,
+            Lastname: User.lastname,
+            Email: User.email,
+            Role: User.role,
+            Token: token
+          }));
       }
     }
     catch (error) {
       res.status(500).json({ message: error.message || "Some error occurred while retrieving." });
     }
   }
-
 }

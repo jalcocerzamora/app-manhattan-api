@@ -1,10 +1,17 @@
 module.exports = (app, middleware) => {
-
     app.get('/api', (req, res) => {
         res.status(200).send({
             data: "Welcome to API APP-MANHATTAN"
         })
     })
+
+    require("./login.router")(app, middleware);
+    require("./payment.router")(app, middleware);
+    require("./user.router")(app, middleware);
+    require("./module.router")(app, middleware);
+    require("./category.router")(app, middleware);
+    require("./product.router")(app, middleware);
+    require("./subproduct.router")(app, middleware);
 
     // Webhook handler for asynchronous events.
     // app.post("/webhook", async (req, res) => {
@@ -48,14 +55,4 @@ module.exports = (app, middleware) => {
     //     }
     //     res.sendStatus(200);
     // });
-
-    const Login = require('../controllers/login.controller');
-    app.post("/api/authenticate", Login.validate)
-
-    require("./payment.router")(app, middleware);
-    require("./user.router")(app, middleware);
-    require("./module.router")(app, middleware);
-    require("./category.router")(app, middleware);
-    require("./product.router")(app, middleware);
-    require("./subproduct.router")(app, middleware);
 }
