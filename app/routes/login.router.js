@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const Login = require('../controllers').Login;
+const login = require('../controllers').Login;
 
 module.exports = (app, middleware) => {
-  // router.post("/", order.create);
+  // app.post("/api/authenticate", Login.validate);
 
-  app.post("/api/authenticate", Login.validate);
+  router.post("/", login.validate);
 
-  // app.use('/api/category', router);
+  app.use('/api/authenticate', router);
 };
