@@ -1,8 +1,8 @@
-// const db = require("../models/index").;
-// const Category = db.categories;
-// const Op = db.Sequelize.Op;
+const db = require("../db/models/index");
+const Op = require('../db/models').db.Sequelize.Op;
+const Category = db.categories;
 
-const Category = require('../db/models').db.Category;
+// const Category = require('../db/models').db.Category;
 
 // Category.sync({ alter: true });
 
@@ -36,7 +36,7 @@ module.exports = {
       console.log(e);
       res.status(500).send(
         {
-          message: err.message || "Some error occurred while retrieving customers." 
+          message: err.message || "Some error occurred while retrieving customers."
         }
       );
     }

@@ -1,5 +1,5 @@
-let router = require("express").Router();
-const delivery = require('../controllers/delivery.controller');
+let router      = require("express").Router();
+const delivery  = require('../controllers').Delivery;
 
 module.exports = (app, middleware) => {
   router.post("/", delivery.create);

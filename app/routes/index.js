@@ -8,7 +8,7 @@ module.exports = (app, middleware) => {
     require("./login.router")(app, middleware);
     require("./payment.router")(app, middleware);
     require("./user.router")(app, middleware);
-    require("./module.router")(app, middleware);
+    // require("./module.router")(app, middleware);
     require("./category.router")(app, middleware);
     require("./product.router")(app, middleware);
     require("./subproduct.router")(app, middleware);

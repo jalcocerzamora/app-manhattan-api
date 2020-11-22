@@ -1,16 +1,11 @@
-// const db        = require("../models/index");
-// const Subproduct   = db.products;
-// const Op        = db.Sequelize.Op;
-const db = require('../db/models').db;
-
-const Category = db.Category;
-const Product = db.Product;
-const Subproduct = db.Subproduct;
-const sequelize = db.sequelize;
+const db        = require("../db/models/index");
+const Op        = require('../db/models').db.Sequelize.Op;
+const Category  = db.Category;
+const Product   = db.Product;
+const Subproduct  = db.Subproduct;
 // Suproduct.sync({ alter: true });
 
 module.exports = {
-
   async create(req, res) {
     // Validate request
     if (!req.body.name) {
@@ -58,12 +53,12 @@ module.exports = {
     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
     let data = [];
 
-    try {      
+    try {
       const categories_with_subproduct = (await Category.findAll(
         {
           raw: true,
-          order: [ ['sort', 'ASC'] ],
-          include: { 
+          order: [['sort', 'ASC']],
+          include: {
             // all: true
             model: Product, as: 'product',
           }
@@ -73,7 +68,7 @@ module.exports = {
       const JSON_categories_with_subproduct = JSON.stringify(categories_with_subproduct);
 
       const subproducts_products = await Subproduct.findAll(
-        { 
+        {
           raw: true,
           // where: {
           //   '$Instruments.size$': { [Op.ne]: 'small' }
@@ -84,7 +79,7 @@ module.exports = {
             //   state: Sequelize.col('project.state')
             // },
             // required: true, //
-            include: { 
+            include: {
               model: Category
             }
           }
@@ -94,16 +89,15 @@ module.exports = {
       const products = await Product.findAll({ raw: true });
       const subproducts = await Subproduct.findAll({ raw: true });
 
-      data = categories.map(category => 
-        {
-          let rObj = {};
-          let ids = products.filter(i => i.categoryId === category.id).map(i => i.id);
-          rObj.Category = category;
-          rObj.Products = subproducts.filter(
-            i => ids.includes(i.productId)
-          );
-          return rObj;
-        });
+      data = categories.map(category => {
+        let rObj = {};
+        let ids = products.filter(i => i.categoryId === category.id).map(i => i.id);
+        rObj.Category = category;
+        rObj.Products = subproducts.filter(
+          i => ids.includes(i.productId)
+        );
+        return rObj;
+      });
 
       res.status(200).send(data);
     } catch (error) {

@@ -1,8 +1,8 @@
-// const db        = require("../models/index");
-// const Product   = db.products;
-// const Op        = db.Sequelize.Op;
+const db        = require('../db/models/index');
+const Op        = db.Sequelize.Op;
+const Product   = db.Product;
 
-const Product = require('../db/models').db.Product;
+// const Product = require('../db/models').db.Product;
 
 // Product.sync({ alter: true });
 

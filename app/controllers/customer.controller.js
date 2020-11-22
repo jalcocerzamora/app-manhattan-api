@@ -1,6 +1,6 @@
-const db        = require("../models/index");
-const Customer  = db.customers;
-const Op        = db.Sequelize.Op;
+const db        = require("../db/models/index");
+const Op        = require('../db/models').db.Sequelize.Op;
+const Customer  = db.Customer;
 
 // Create and Save a new Customer
 exports.create = async (req, res) => {

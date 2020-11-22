@@ -1,6 +1,6 @@
-const db        = require("../models/index");
+const db        = require("../db/models/index");
+const Op        = require('../db/models').db.Sequelize.Op;
 const Order     = db.orders;
-const Op        = db.Sequelize.Op;
 
 // Create and Save a new Order
 exports.create = (req, res) => {

@@ -1,6 +1,6 @@
-const db        = require("../models/index");
+const db        = require("../db/models/index");
+const Op        = require('../db/models').db.Sequelize.Op;
 const Delivery  = db.deliveries;
-const Op        = db.Sequelize.Op;
 
 exports.create = (req, res) => {
   if (!req.body.quantity) {
