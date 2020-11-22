@@ -1,4 +1,4 @@
-const router = require("express").Router();
+let router = require("express").Router();
 const category = require('../controllers').Category;
 
 module.exports = (app, middleware) => {  

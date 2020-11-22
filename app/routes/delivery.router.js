@@ -1,4 +1,4 @@
-const router = require("express").Router();
+let router = require("express").Router();
 const delivery = require('../controllers/delivery.controller');
 
 module.exports = (app, middleware) => {
