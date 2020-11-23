@@ -1,8 +1,8 @@
 const ConfigAPI = require('./../config/api.config');
 
-const jwt = require('jsonwebtoken');
+const jwt   = require('jsonwebtoken');
 const Login = require('../db/models').db.User;
-const Op = require('../db/models').db.Sequelize.Op;
+const Op    = require('../db/models').db.Sequelize.Op;
 
 module.exports = {
   async validate(req, res) {

@@ -1,4 +1,4 @@
-const db        = require("../db/models/index");
+const db        = require("../db/models").db;
 const Op        = require('../db/models').db.Sequelize.Op;
 const Category  = db.Category;
 const Product   = db.Product;

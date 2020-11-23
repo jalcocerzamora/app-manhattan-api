@@ -1,6 +1,6 @@
-const db = require("../db/models/index");
-const Op = require('../db/models').db.Sequelize.Op;
-const Category = db.categories;
+const db        = require("../db/models/index");
+const Op        = require('../db/models').db.Sequelize.Op;
+const Category  = db.categories;
 
 // const Category = require('../db/models').db.Category;
 
