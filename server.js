@@ -18,7 +18,7 @@ const PORT = parseInt(process.env.PORT, 10) || 8000;
 
 server.listen(PORT, () => { console.log('Server is listening to port %d', PORT) });
 
-app.set('private-key', configAPI.PrivateKey)
+app.set('private-key', configAPI.PRIVATE_KEY)
 app.use(express.static(process.env.STATIC_DIR));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
