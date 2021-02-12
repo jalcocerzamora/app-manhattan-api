@@ -1,0 +1,71 @@
+{
+    "name": "App-Manhattan - Dev Mode",
+    "port": 3456,
+    "mode": "development",
+    "protocol": "http",
+    "ssl": true,
+    "serverUrl": "localhost",
+    "serverUrlWebUrlLink": "localhost:4200",
+    "static_dir": "../../client",
+    "databases": {
+        "sequelize": {
+            "localhost": {
+                "username": "root",
+                "password": "",
+                "database": "easyorder_manhattan_dev",
+                "host": "databases.000webhost.com",
+                "port": 3306,
+                "dialect": "mysql",
+                "pool": {
+                    "max": 5,
+                    "min": 0,
+                    "acquire": 30000,
+                    "idle": 10000
+                }
+            },
+            "development": {
+                "username": "jalcocerz@db-app-manhattan",
+                "password": "Filipenses413",
+                "database": "db-app-manhattan",
+                "host": "db-app-manhattan.mysql.database.azure.com",
+                "port": 3306,
+                "dialect": "mysql",
+                "pool": {
+                    "max": 5,
+                    "min": 0,
+                    "acquire": 30000,
+                    "idle": 10000
+                }
+            }
+        }
+    },
+    "email": {
+        "host": "",
+        "port": "",
+        "username": "",
+        "password": ""
+    },
+    "cors": {
+        "whitelist": [
+            "chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop",
+            "http://localhost:8000",
+            "https://localhost:8000",
+            
+            "http://localhost:4200",
+            "https://localhost:4200",
+
+            "https://jalcocerzamora.github.io",
+            "https://jalcocerz.000webhostapp.com",
+
+            "http://local.app-manhattan.com",
+            "https://local.app-manhattan.com"
+        ],
+        "blacklist": [
+
+        ]
+    },
+    "api": {
+        "PRIVATE_KEY": "WiCT0wREOk6DHObylJf1fA",
+        "PRIVATE_CRYPTO": "pc_test_5k6DHO"
+    }
+}
