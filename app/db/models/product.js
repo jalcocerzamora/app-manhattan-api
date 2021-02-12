@@ -10,15 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Product.belongsTo(models.Category, { onDelete: "CASCADE", foreignKey: 'categoryId' });
-      Product.hasMany(models.Subproduct, { foreignKey: 'productId', as: 'subproduct' })
+      Product.belongsTo(models.Category, { onDelete: "CASCADE", foreignKey: 'category_id' });
+      Product.hasMany(models.Subproduct, { foreignKey: 'product_id', as: 'subproduct' })
     }
   };
   Product.init({
     image: { type: DataTypes.STRING },
     name: { type: DataTypes.STRING(255), allowNull: false, unique: 'product' },
     description: { type: DataTypes.STRING(255), },
-    categoryId: { type: DataTypes.INTEGER, unique: 'product' },
+    category_id: { type: DataTypes.INTEGER, unique: 'product' },
     status: { type: DataTypes.BOOLEAN, defaultValue: 1 },
     online: { type: DataTypes.BOOLEAN, defaultValue: 1 },
   }, {

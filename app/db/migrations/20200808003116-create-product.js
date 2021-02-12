@@ -27,13 +27,13 @@ module.exports = {
         type: DataTypes.BOOLEAN,
         defaultValue: 1
       },
-      categoryId: {
+      category_id: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
           model: 'Categories',
           key: 'id',
-          as: 'categoryId'
+          as: 'category_id'
         },
       },
       createdAt: {

@@ -11,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Permission.belongsTo(models.User, { onDelete: "CASCADE", foreignKey: 'userId' });
-      Permission.belongsTo(models.Module, { onDelete: "CASCADE", foreignKey: 'moduleId' });
+      Permission.belongsTo(models.User, { onDelete: "CASCADE", foreignKey: 'user_id' });
+      Permission.belongsTo(models.Module, { onDelete: "CASCADE", foreignKey: 'module_id' });
     }
   };
   Permission.init({
-    userId: DataTypes.INTEGER,
-    moduleId: DataTypes.INTEGER,
+    user_id: DataTypes.INTEGER,
+    module_id: DataTypes.INTEGER,
     create: DataTypes.BOOLEAN,
     read: DataTypes.BOOLEAN,
     update: DataTypes.BOOLEAN,

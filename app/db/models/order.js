@@ -13,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Order.belongsTo(models.Subproduct, {
         onDelete: "CASCADE",
-        foreignKey: 'productId'
+        foreignKey: 'product_id'
       });
     }
   };
   Order.init({
-    subproductId: { type: DataTypes.INTEGER, allowNull: false, },
+    subproduct_id: { type: DataTypes.INTEGER, allowNull: false, },
     quantity: { type: DataTypes.INTEGER, allowNull: false, },
     comments: { type: DataTypes.STRING, },
   }, {

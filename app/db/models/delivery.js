@@ -14,15 +14,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Delivery.init({
-    customerId: {
+    customer_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    orderId: {
+    order_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    statusId: {
+    status_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

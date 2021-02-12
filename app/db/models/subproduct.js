@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Subproduct.belongsTo(models.Product, {onDelete: "CASCADE", foreignKey: 'productId' });
-      Subproduct.hasMany(models.Order, { foreignKey: 'productId', as: 'order' })
+      Subproduct.belongsTo(models.Product, {onDelete: "CASCADE", foreignKey: 'product_id' });
+      Subproduct.hasMany(models.Order, { foreignKey: 'product_id', as: 'order' })
     }
   };
   Subproduct.init({
-    productId:    { type: DataTypes.INTEGER, allowNull: false, unique: 'subproduct' },
+    product_id:    { type: DataTypes.INTEGER, allowNull: false, unique: 'subproduct' },
     image:  { type: DataTypes.STRING },
     name:   { type: DataTypes.STRING(255), allowNull: false, unique: 'subproduct' },
     price:  { type: DataTypes.DECIMAL(10, 2), allowNull: false, unique: 'subproduct' },

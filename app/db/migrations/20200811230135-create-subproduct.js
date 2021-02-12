@@ -23,13 +23,13 @@ module.exports = {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },
-      productId: {
+      product_id: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
           model: 'Products',
           key: 'id',
-          as: 'productId'
+          as: 'product_id'
         },
       },
       createdAt: {
