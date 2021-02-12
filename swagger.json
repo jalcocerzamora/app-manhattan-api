@@ -1,0 +1,214 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "APP-MANHATTAN API",
+        "description": "Optional multiline or single-line description in HTML.",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3456/v1",
+            "description": "Local Development Server"
+        },
+        {
+            "url": "https://api-manhattan.azurewebsites.net/v1",
+            "description": "Optional server description, e.g. Main (production) server"
+        },
+        {
+            "url": "http://staging-api.example.com", 
+            "description": "Optional server description, e.g. Internal staging server for testing"
+        }
+    ],
+    "tags": [
+        {
+            "name": "sign",
+            "description": "Access to API"
+        },
+        {
+            "name": "user",
+            "description": "Operations about user"
+        },
+        {
+            "name": "menu",
+            "description": "Everything about your Menus"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearerAuth" : {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "definitions": {
+        "ApiResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "succMessage": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "string"
+                }
+            }
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "avatar": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "firstname": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string",
+                    "enum": [
+                        "developer",
+                        "administrator",
+                        "customer",
+                        "public",
+                        "none"
+                    ],
+                    "default": "public",
+                    "description": "developer | administrator | customer | public | none"
+                },
+                "userStatus": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "User Status"
+                }
+            },
+            "xml": {
+                "name": "User"
+            }
+        },
+        "Menu": {
+            "type": "object",
+            "properties": {
+                "Category": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "sort": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                },
+                "Products": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "product_id": {
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "image": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "price": {
+                                "type": "integer",
+                                "format": "decimal"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "default": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "online": {
+                                "type": "string"
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    }
+                }
+            },
+            "xml": {
+                "name": "Menu"
+            }
+        },
+        "externalDocs": {
+            "description": "Find out more about Swagger",
+            "url": "http://swagger.io"
+        }
+    },
+    "paths": {
+        "/user": {
+            "get": {
+                "tags": [ "user" ],
+                "summary": "",
+                "description": "",
+                "produces": [ "application/json" ],
+                "parameters": [],
+                "response": {
+                    "$ref": "#/components/schemas/Pet"
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    }
+}
