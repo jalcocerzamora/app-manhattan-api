@@ -1,5 +1,5 @@
 module.exports = (app, middleware) => {
-    app.get('/api', (req, res) => {
+    app.get('/v1', (req, res) => {
         res.status(200).send({
             data: "Welcome to API APP-MANHATTAN"
         })
