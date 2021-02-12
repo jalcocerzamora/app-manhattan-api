@@ -4,8 +4,8 @@
 
 const CryptoJS = require("crypto-js");
 
-const API = require('./../config/api.config');
-
+// const API = require('./../config/api.config');
+const config      = require('config');
 const jwt   = require('jsonwebtoken');
 const Login = require('../db/models').db.User;
 const Op    = require('../db/models').db.Sequelize.Op;
@@ -14,7 +14,7 @@ module.exports = {
   async validate(req, res) {    
     try {
       // Decrypt
-      var bytes  = CryptoJS.AES.decrypt(req.body.password, API.PRIVATE_CRYPTO);
+      var bytes  = CryptoJS.AES.decrypt(req.body.password, config.api.PRIVATE_CRYPTO);
       var password_decrypt = bytes.toString(CryptoJS.enc.Utf8);
 
       let condition = { username: req.body.username, password: password_decrypt };
