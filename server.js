@@ -21,14 +21,14 @@ const cross       = require("cors");
 const app = express();
 const server = (configSSL.valid ? https.createServer(configSSL.options, app) : http.createServer(app));
 const middleware = require('./app/config/middleware.config')(app);
-// const PORT = parseInt(process.env.PORT, 10) || 8000;
+const PORT = parseInt(process.env.PORT, 10) || config.port || 8000;
 
 const start = () => (
   // server.listen(PORT, () => { console.log('Server is listening to port %d', PORT) });
-  app.listen(config.port, () => {
+  app.listen(PORT, () => {
     console.log(chalk.yellow('.......................................'));
     console.log(chalk.green(config.name));
-    console.log(chalk.green(`Port:\t\t${config.port}`));
+    console.log(chalk.green(`Port:\t\t${PORT}`));
     console.log(chalk.green(`Mode:\t\t${config.mode}`));
     console.log(chalk.green(`App version:\t${pack.version}`));
     console.log(chalk.green("database connection is established"));
