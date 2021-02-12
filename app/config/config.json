@@ -1,9 +1,23 @@
 {
   "development": {
+    "username": "jalcocerz@db-app-manhattan",
+    "password": "Filipenses413",
+    "database": "db-app-manhattan",
+    "host": "db-app-manhattan.mysql.database.azure.com",
+    "port": 3306,
+    "dialect": "mysql",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  },
+  "development_webhost": {
     "username": "root",
     "password": "",
     "database": "easyorder_manhattan_dev",
-    "host": "localhost",
+    "host": "databases.000webhost.com/",
     "port": 3306,
     "dialect": "mysql",
     "pool": {
@@ -27,14 +41,23 @@
       "idle": 10000
     }
   },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+
+  "development_mongodb": {
+    "username": "",
+    "password": "",
+    "database": "petceuticals",
+    "host": "localhost",
+    "port": 27017
   },
-  "production": {
+  "production_mongodb": {
+    "username": "",
+    "password": "",
+    "database": "petceuticals",
+    "host": "localhost",
+    "port": 27017
+  },
+
+  "production:": {
     "username": "eztbevzf_developer",
     "password": "Filipenses413@Jalcocer",
     "database": "eztbevzf_easyorder_manhattan",
@@ -60,5 +83,13 @@
       "min": 0,
       "idle": 10000
     }
+  },
+
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
   }
 }

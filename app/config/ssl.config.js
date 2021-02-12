@@ -1,3 +1,5 @@
+const config = require('config');
+
 const fs = require("fs");
 const path = require('path')
 
@@ -5,7 +7,7 @@ let isValid = false
 let fileKEY = null
 let fileCERT = null
 
-if(process.env.NODE_ENV !== 'production') {
+if(config.mode == 'development') {
     if(fs.existsSync(path.join(__dirname, '../../ssl/server.key'))) {
         isValid = true
         fileKEY   = fs.readFileSync(path.join(__dirname, '../../ssl/server.key'));
