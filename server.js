@@ -8,7 +8,7 @@ const chalk       = require('chalk');
 const swaggerUi   = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 const configAPI   = require('./app/config/api.config');
-const configCORS  = require('./app/config/cors.config');
+const configCORS  = require('./app/config/cors/middleware.config.js').options;
 const configSSL   = require('./app/config/ssl.config');
 
 // if (process.env.NODE_ENV !== 'production') { require('dotenv').config({ path: __dirname + '/.env' }) }
@@ -16,11 +16,11 @@ const configSSL   = require('./app/config/ssl.config');
 const express     = require('express');
 const http        = require('http');
 const https       = require('https');
-const cross       = require("cors");
+const cors       = require("cors");
 
 const app = express();
 const server = (configSSL.valid ? https.createServer(configSSL.options, app) : http.createServer(app));
-const middleware = require('./app/config/middleware.config')(app);
+const middleware = require('./app/config/authenticate/middleware.config')(app);
 const PORT = parseInt(process.env.PORT, 10) || config.port || 8000;
 
 const start = () => (
@@ -41,7 +41,7 @@ app.set('private-key', config.api.PRIVATE_KEY)
 // app.use(express.static(process.env.STATIC_DIR));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(cross(configCORS.options));
+app.use(cors(configCORS));
 
 // require('./app/websocket')(app, middleware);
 
