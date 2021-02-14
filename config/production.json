@@ -2,7 +2,7 @@
     "name": "App-Manhattan - Production Mode",
     "port": 4300,
     "mode": "production",
-    "protocol": "http",
+    "protocol": "https",
     "ssl": true,
     "serverUrl": "",
     "serverUrlWebUrlLink": "",
