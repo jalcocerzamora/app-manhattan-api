@@ -1,7 +1,7 @@
 {
   "name": "app-manhattan",
   "version": "1.0.0",
-  "description": "Nodejs to create rest call using MySQL",
+  "description": "Nodejs to create rest call using MySQL",  
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -15,6 +15,10 @@
     "node": "12.x",
     "npm": "6.x"
   },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
   "author": {
     "name": "Jonatan Alcocer Zamora",
     "email": "jalcocerzamora@gmail.com"
