@@ -1,3 +1,5 @@
+const reqResponse = require('../config/cors/responseHandler');
+
 const Subproduct = require('../db/models').db.Subproduct;
 const Op = require('../db/models').db.Sequelize.Op;
 
@@ -78,15 +80,15 @@ module.exports = {
       });
 
       // Send publishable key and PaymentIntent details to client
-      res.status(201).send({
+      res.status(200).send(reqResponse.successResponse(200, "Intent Created", {
         publicKey: process.env.STRIPE_PUBLISHABLE_KEY,
         clientSecret: paymentIntent.client_secret,
         id: paymentIntent.id
-      });
+      }));
     }
-    catch (e) {
-      console.log(e);
-      res.status(400).send(e);
+    catch (err) {
+      console.log(err);
+      res.status(400).send(reqResponse.errorResponse(400, err));
     }
   },
 
@@ -109,9 +111,9 @@ module.exports = {
         id: paymentIntent.id
       });
     }
-    catch (e) {
-      console.log(e);
-      res.status(400).send(e);
+    catch (err) {
+      console.log(err);
+      res.status(400).send(reqResponse.errorResponse(400, err));
     }
   },
 

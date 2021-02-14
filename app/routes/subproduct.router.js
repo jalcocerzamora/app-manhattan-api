@@ -1,3 +1,5 @@
+const ROUTE = require('../config/constant/Routes');
+
 let router = require("express").Router();
 const controller = require('../controllers/').Subproduct;
 
@@ -20,5 +22,5 @@ module.exports = (app, middleware) => {
 
   // router.delete("/", controller.deleteAll);
 
-  app.use('/v1/menu', router);
+  app.use(ROUTE.MENU, router);
 };

@@ -1,3 +1,5 @@
+const ROUTE = require('../config/constant/Routes');
+
 let router = require("express").Router();
 const category = require('../controllers').Category;
 
@@ -25,5 +27,5 @@ module.exports = (app, middleware) => {
     // router.delete("/", category.deleteAll);
   
     // router.use(middleware)
-    app.use('/api/category', router);
+    app.use(ROUTE.CATEGORY, router);
   };

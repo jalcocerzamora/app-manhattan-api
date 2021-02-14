@@ -1,3 +1,4 @@
+const ROUTE = require('../config/constant/Routes');
 let router = require("express").Router();
 const login = require('../controllers').Login;
 
@@ -6,5 +7,5 @@ module.exports = (app, middleware) => {
 
   router.post("/", login.validate);
 
-  app.use('/api/authenticate', router);
+  app.use(ROUTE.LOGIN, router);
 };

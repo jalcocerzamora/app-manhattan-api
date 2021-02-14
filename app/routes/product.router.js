@@ -1,3 +1,5 @@
+const ROUTE = require('../config/constant/Routes');
+
 let router = require("express").Router();
 const product = require('../controllers/').Product;
 
@@ -16,5 +18,5 @@ module.exports = (app, middleware) => {
 
   // router.delete("/", product.deleteAll);
 
-  app.use('/api/product', router);
+  app.use(ROUTE.PRODUCT, router);
 };

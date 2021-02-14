@@ -1,3 +1,6 @@
+const classErrorData = require('../config/constant/ErrorData').ErrorData;
+const reqResponse = require('../config/cors/responseHandler');
+
 const db        = require("../db/models").db;
 const Op        = require('../db/models').db.Sequelize.Op;
 const Category  = db.Category;
@@ -9,12 +12,12 @@ module.exports = {
   async create(req, res) {
     // Validate request
     if (!req.body.name) {
-      res.status(400).send({ message: "Content can not be empty!" });
+      res.status(402).send(reqResponse.errorResponse(402));
       return;
     }
 
     const item = {
-      productId: req.body.productId,
+      product_id: req.body.product_id,
       name: req.body.name,
       price: req.body.price,
       description: req.body.description,
@@ -25,10 +28,7 @@ module.exports = {
         res.send(data);
       })
       .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the Subproduct." + err.message
-        });
+        res.status(500).send(new classErrorData(500, err.message || "Some error occurred while creating the Subproduct.", null));
       });
   },
 
@@ -54,36 +54,9 @@ module.exports = {
     let data = [];
 
     try {
-      const categories_with_subproduct = (await Category.findAll(
-        {
-          raw: true,
-          order: [['sort', 'ASC']],
-          include: {
-            // all: true
-            model: Product, as: 'product',
-          }
-        }
-      ));
-
-      const JSON_categories_with_subproduct = JSON.stringify(categories_with_subproduct);
-
-      const subproducts_products = await Subproduct.findAll(
-        {
-          raw: true,
-          // where: {
-          //   '$Instruments.size$': { [Op.ne]: 'small' }
-          // },
-          include: {
-            model: Product,
-            // where: {
-            //   state: Sequelize.col('project.state')
-            // },
-            // required: true, //
-            include: {
-              model: Category
-            }
-          }
-        });
+      // const categories_with_subproduct = (await Category.findAll( { raw: true, order: [['sort', 'ASC']], include: { all: true model: Product, as: 'product', } } ));
+      // const JSON_categories_with_subproduct = JSON.stringify(categories_with_subproduct);
+      // const subproducts_products = await Subproduct.findAll( { raw: true, where: { '$Instruments.size$': { [Op.ne]: 'small' } }, include: { model: Product, where: { state: Sequelize.col('project.state') }, required: true, include: { model: Category } } });
 
       const categories = await Category.findAll({ raw: true, order: [['sort', 'ASC']] });
       const products = await Product.findAll({ raw: true });
@@ -91,20 +64,17 @@ module.exports = {
 
       data = categories.map(category => {
         let rObj = {};
-        let ids = products.filter(i => i.categoryId === category.id).map(i => i.id);
+        let ids = products.filter(i => i.category_id === category.id).map(i => i.id);
         rObj.Category = category;
         rObj.Products = subproducts.filter(
-          i => ids.includes(i.productId)
+          i => ids.includes(i.product_id)
         );
         return rObj;
       });
 
-      res.status(200).send(data);
+      res.status(200).send(reqResponse.successResponse(200, "Menu Found", data));
     } catch (error) {
-      res.status(500).send({
-        message:
-          error.message || "Some error occurred while retrieving data."
-      });
+      res.status(500).send(reqResponse.errorResponse(500, err.message || "Some error occurred while retrieving data."));
     }
   },
 
