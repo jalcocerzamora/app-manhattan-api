@@ -29,11 +29,11 @@ let successResponse = (status, succMessage, data) => {
 	*/
 let errorResponse = (statusCode, errMessage) => {
 	const errResponse = findErrorMessage(statusCode);
-	if(errResponse.err) {
+	if(errResponse.error) {
 		return { 
 			status: statusCode, 
 			message: errMessage, 
-			data: errResponse.err 
+			data: errResponse.error
 		};
 	}
 	return { ...errResponse };
