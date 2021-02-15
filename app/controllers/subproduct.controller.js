@@ -73,7 +73,7 @@ module.exports = {
       });
 
       res.status(200).send(reqResponse.successResponse(200, "Menu Found", data));
-    } catch (error) {
+    } catch (err) {
       res.status(500).send(reqResponse.errorResponse(500, err.message || "Some error occurred while retrieving data."));
     }
   },
